@@ -5,5 +5,8 @@ version = "0.1.0"
 
 [deps]
 Distances = "b4f34e82-e78d-54a5-968a-f98e89d6e8f7"
+RoboLib = "79865ad4-1e77-11e9-0337-d56b67668373"
 StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+Traceur = "37b6cedf-1f77-55f8-9503-c64b63398394"
 UnsafeArrays = "c4a57d5a-5b31-53a6-b365-19f8c011fbd6"
