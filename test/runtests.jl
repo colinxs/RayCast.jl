@@ -2,6 +2,9 @@ using Test
 
 using RayCast.Bresenham: cast_heading, cast
 using StaticArrays
+using RoboLib.Util: @gridstride
+using CuArrays
+using CUDAnative
 
 @inline function occupied(x,y)::Bool
     return false
@@ -64,10 +67,35 @@ function validate_line()
     return true
 end
 
+function cudatest(n,r)
+    #n, r = 5000*72, 10
+    thetas = collect(LinRange(0, 2*pi, n))
+    sc = sincos.(thetas)
+    xy = [SVector(trunc(Int, c*r), trunc(Int, s*r)) for (s, c) in sc]
+    buf = [SVector(0,0) for _ in 1:n]
+    cudacasthelper(buf, xy)
+end
+
+function cudacasthelper(buf, xy)
+    xyd = cu(xy)
+    bufd = cu(buf)
+    numblocks = ceil(Int, length(xyd))
+    @cuda threads=256 blocks=numblocks cudacast!(bufd, xyd)
+    return bufd == xyd
+end
+
+function cudacast!(buf, xy)
+    @gridstride length(xy) i begin
+        x, y = xy[i]
+        buf[i] = cast(1, 1, x, y, occupied)
+    end
+end
+
 @testset "Bresenham" begin
 
     @test validate_line()
     @test alloc_test()
+    @test cudatest(1000,10)
 end
 
 
