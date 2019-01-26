@@ -8,9 +8,9 @@ version = "0.3.2"
 
 [[AbstractPlotting]]
 deps = ["ColorBrewer", "ColorTypes", "Colors", "Contour", "FileIO", "FixedPointNumbers", "FreeType", "FreeTypeAbstraction", "GeometryTypes", "ImageMagick", "IntervalSets", "LinearAlgebra", "Markdown", "Observables", "Packing", "PlotUtils", "Printf", "Random", "Serialization", "Showoff", "SignedDistanceFields", "StaticArrays", "Statistics", "Test", "UnicodeFun"]
-git-tree-sha1 = "ee1e2ebc568bbd57e0aa49b16f5593068043e998"
+git-tree-sha1 = "1bec1e50fe71d74675636561d2d3e98c9262e013"
 uuid = "537997a7-5e4e-5d89-9595-2241ea00577e"
-version = "0.9.3"
+version = "0.9.4"
 
 [[AxisAlgorithms]]
 deps = ["Compat", "WoodburyMatrices"]
@@ -50,12 +50,6 @@ deps = ["BinDeps", "CMake", "Libdl", "Parameters", "Test"]
 git-tree-sha1 = "2b43d451639984e3571951cc687b8509b0a86c6d"
 uuid = "d5fb7624-851a-54ee-a528-d3f3bac0b4a0"
 version = "0.2.2"
-
-[[Cassette]]
-deps = ["InteractiveUtils", "LinearAlgebra", "Test"]
-git-tree-sha1 = "6eab7f863acb75eecec5f9df3d5bb0551a63fddc"
-uuid = "7057c7e9-c182-5462-911a-8362d720325c"
-version = "0.2.1"
 
 [[ColorBrewer]]
 deps = ["Colors", "JSON", "Test"]
@@ -398,8 +392,10 @@ uuid = "189a3867-3050-52da-a836-e630ba90ab69"
 version = "0.2.0"
 
 [[RoboLib]]
-deps = ["AbstractPlotting", "CoordinateTransformations", "Distances", "GLMakie", "LinearAlgebra", "Makie", "Random", "Rotations", "StaticArrays", "UnsafeArrays"]
-path = "/home/colinxs/workspace/RoboLib"
+deps = ["AbstractPlotting", "CoordinateTransformations", "Distances", "GLMakie", "LinearAlgebra", "Makie", "Random", "Rotations", "StaticArrays"]
+git-tree-sha1 = "df251f66c80b67106481069c988c51ebf1805da5"
+repo-rev = "master"
+repo-url = "git@github.com:colinxs/RoboLib.jl.git"
 uuid = "79865ad4-1e77-11e9-0337-d56b67668373"
 version = "0.1.0"
 
@@ -476,12 +472,6 @@ version = "0.27.0"
 deps = ["Distributed", "InteractiveUtils", "Logging", "Random"]
 uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
-[[Traceur]]
-deps = ["Cassette", "InteractiveUtils", "Logging", "MacroTools", "Test"]
-git-tree-sha1 = "ecfb8c917712ff5b787e2d837f2d5808c880a642"
-uuid = "37b6cedf-1f77-55f8-9503-c64b63398394"
-version = "0.2.1"
-
 [[URIParser]]
 deps = ["Test", "Unicode"]
 git-tree-sha1 = "6ddf8244220dfda2f17539fa8c9de20d6c575b69"
@@ -500,12 +490,6 @@ deps = ["Test"]
 git-tree-sha1 = "63cbbd00217fc9aafedf055b60459c1ae7e01ecc"
 uuid = "1cfade01-22cf-5700-b092-accc4b62d6e1"
 version = "0.4.0"
-
-[[UnsafeArrays]]
-deps = ["Compat"]
-git-tree-sha1 = "fb8d569d402a60287ae631d0e65dc620346bca92"
-uuid = "c4a57d5a-5b31-53a6-b365-19f8c011fbd6"
-version = "0.2.0"
 
 [[VersionParsing]]
 deps = ["Compat"]
