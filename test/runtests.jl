@@ -6,9 +6,10 @@ using RoboLib.Util: @gridstride
 using CuArrays
 using CUDAnative
 
-@inline function occupied(x,y)::Bool
-    return false
+struct Occ{T}
+    x::T
 end
+(m::Occ)(x,y)::Bool = false
 
 function alloc_test()
     n, r = 360, 100
@@ -16,14 +17,15 @@ function alloc_test()
     sc = sincos.(thetas)
     xy = [SVector(trunc(Int, c*r), trunc(Int, s*r)) for (s, c) in sc]
     buf = [SVector(0,0) for _ in 1:n]
-    alloc = @allocated _alloc_test(xy, buf)
+    occ = Occ(5)
+    alloc = @allocated _alloc_test(xy, buf, occ)
     return iszero(alloc)
 end
 
-function _alloc_test(xy, buf)
+function _alloc_test(xy, buf, occ)
     for i in 1:length(xy)
         x, y = xy[i]
-        buf[i] = cast(1, 1, x, y, (x,y)->false)
+        buf[i] = cast(Int, 1, 1, x, y, occ)
     end
 end
 
@@ -69,7 +71,6 @@ function validate_line()
 end
 
 function cudatest(n,r)
-    #n, r = 5000*72, 10
     thetas = collect(LinRange(0, 2*pi, n))
     sc = sincos.(thetas)
     xy = [SVector(trunc(Int, c*r), trunc(Int, s*r)) for (s, c) in sc]
@@ -78,26 +79,27 @@ function cudatest(n,r)
 end
 
 function cudacasthelper(buf, xy)
+    occ = Occ(5)
     xyd = cu(xy)
     bufd = cu(buf)
     numblocks = ceil(Int, length(xyd))
-    @cuda threads=256 blocks=numblocks cudacast!(bufd, xyd)
+    @cuda threads=256 blocks=numblocks cudacast!(bufd, xyd, occ)
     return bufd == xyd
 end
 
-function cudacast!(buf, xy)
+function cudacast!(buf, xy, occ)
     @gridstride length(xy) i begin
         x, y = xy[i]
-        buf[i] = cast(1, 1, x, y, occupied)
+        buf[i] = cast(1, 1, x, y, occ)
     end
 end
 
-#@testset "Bresenham" begin
-#
-#    @test validate_line()
-#    @test alloc_test()
-#    @test cudatest(1000,10)
-#end
+@testset "Bresenham" begin
+
+    @test validate_line()
+    @test alloc_test()
+    @test cudatest(1000,10)
+end
 
 
 
