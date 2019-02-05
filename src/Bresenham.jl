@@ -28,7 +28,6 @@ function cast(x0::I, y0::I, x1::I, y1::I, testfn) where I
     ystep = ifelse(y0 < y1, one(I), -one(I))
 
     if dy > dx
-       #InteractiveUtils.@code_warntype _bline_high(x0, y0, x1, y1, dx, dy, xstep, ystep, testfn)
        _bline_high(x0, y0, x1, y1, dx, dy, xstep, ystep, testfn)
     else
        _bline_low(x0, y0, x1, y1, dx, dy, xstep, ystep, testfn)
