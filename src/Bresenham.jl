@@ -20,7 +20,7 @@ end
     cast(round(I, x0), round(I, y0), round(I, x1), round(I, y1), testfn)
 end
 
-function cast(x0::I, y0::I, x1::I, y1::I, testfn) where I
+function cast(x0::I, y0::I, x1::I, y1::I, testfn) where I <: Integer
     dx = abs(x1 - x0)
     dy = abs(y1 - y0)
 
