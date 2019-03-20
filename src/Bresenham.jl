@@ -3,7 +3,7 @@ module Bresenham
 export cast, cast_heading
 
 using StaticArrays
-using RoboLib.Util: rangebearing2point
+using RayCast: rangebearing2point
 
 @inline function cast_heading(::Type{I}, x0::Real, y0::Real, heading::Real, maxrange::Real, testfn) where I
     x1, y1 = rangebearing2point(x0, y0, heading, maxrange)

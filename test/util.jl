@@ -2,7 +2,7 @@ using RayCast.Bresenham: cast_heading, cast
 using StaticArrays
 using Distributions
 using Random
-using RoboLib.Util: rangebearing2point
+using RayCast: rangebearing2point
 #using RoboLib.Util: @gridstride, rangebearing2point
 #using CuArrays
 #using CUDAnative
